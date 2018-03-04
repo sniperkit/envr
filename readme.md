@@ -1,5 +1,7 @@
 # enventory
-[![Code Climate](https://img.shields.io/codeclimate/issues/github/me-and/mdf.svg)](https://github.com/dunstontc/enventory/issues)
+
+# envr
+[![GitHub issues](https://img.shields.io/github/issues/dunstontc/enventory.svg)](https://github.com/dunstontc/enventory/issues)
 [![License](https://img.shields.io/github/license/dunstontc/enventory.svg)](https://github.com/dunstontc/enventory/blob/master/LICENSE)
 
 ## Commands: ##
