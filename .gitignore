@@ -13,27 +13,28 @@ Thumbs.db
 .Trashes
 
 # dependencies
-node_modules/**
-bower_components/**
+vendor/*
+node_modules/*
+bower_components/*
 
 # Built files
-Build/**
-build/**
-dist/**
+Build/*
+build/*
+dist/*
 
 # Local files
 .env
 .variables
-.ignore/**
-ignore/**
+.ignore/*
+ignore/*
 
 # Python stuff
-**/__pycache__/
+*/__pycache__/
 *.pyc
 VENV
 
 # Logs
-**/*.map
+*/*.map
 npm-debug.log
 npm-debug.log.*
 yarn-error.log
@@ -43,6 +44,6 @@ yarn-error.log
 .idea
 .vscode
 .projectile
-**/tags
+*/tags
 
 
