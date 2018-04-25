@@ -38,13 +38,10 @@ func getNPM() []NPMPackage {
 
 // NPMPackage struct
 type NPMPackage struct {
-	Version  string `json:"version"`
-	From     string `json:"from"`
 	Name     string `json:"name"`
-	Resolved string `json:"resolved"`
-	// Version  string `json:"version,omitempty"`
-	// From     string `json:"from,omitempty"`
-	// Resolved string `json:"resolved,omitempty"`
+	Version  string `json:"version,omitempty"`
+	From     string `json:"from,omitempty"`
+	Resolved string `json:"resolved,omitempty"`
 }
 
 // Implement the Stringer interface for printing
