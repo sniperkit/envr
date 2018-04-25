@@ -3,13 +3,25 @@ package packs
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 
 	"github.com/Jeffail/gabs"
 	sh "github.com/codeskyblue/go-sh"
 )
+
+// NPMPackage struct
+type NPMPackage struct {
+	Name     string `json:"name"`
+	Version  string `json:"version,omitempty"`
+	From     string `json:"from,omitempty"`
+	Resolved string `json:"resolved,omitempty"`
+}
+
+// Implement the Stringer interface for printing
+func (p NPMPackage) String() string {
+	return fmt.Sprintf("{Package: %s, %s, %s, %s", p.Name, p.From, p.Version, p.Resolved)
+}
 
 func getNPM() []NPMPackage {
 	packs := make([]NPMPackage, 1)
@@ -34,27 +46,4 @@ func getNPM() []NPMPackage {
 	json.Unmarshal(out, &packs)
 
 	return packs
-}
-
-// NPMPackage struct
-type NPMPackage struct {
-	Name     string `json:"name"`
-	Version  string `json:"version,omitempty"`
-	From     string `json:"from,omitempty"`
-	Resolved string `json:"resolved,omitempty"`
-}
-
-// Implement the Stringer interface for printing
-func (p NPMPackage) String() string {
-	return fmt.Sprintf("{Package: %s, %s, %s, %s", p.Name, p.From, p.Version, p.Resolved)
-}
-
-// Gets a slice of bytes from a file.
-func getBytes(file string) []byte {
-	theBytes, err := ioutil.ReadFile(file)
-	if err != nil {
-		log.Fatalf("Demonic Invasion In Progress: %s", err.Error())
-		return []byte{}
-	}
-	return theBytes
 }
