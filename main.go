@@ -1,6 +1,4 @@
-/**
- * ENVentory provides insights into what you have installed in your current environment.
- */
+// Package ENVentory provides insights into what you have installed in your current environment.
 package main
 
 import (
@@ -11,23 +9,8 @@ import (
 	"os"
 
 	"github.com/cloudogu/spinners"
+	"github.com/dunstontc/envr/packs"
 )
-
-type Package struct {
-	Name    string `json:"name,omitempty"`
-	Version string `json:"version,omitempty"`
-	// Path    string `json:"path,omitempty"`
-}
-
-type Packages struct {
-	Name     string    `json:"name"`
-	Packages []Package `json:"packages,omitempty"`
-}
-
-func NewPackages(name string, packs []Package) Packages {
-	p := Packages{name, packs}
-	return p
-}
 
 var listPip2 = flag.Bool("pip2", false, "List All Pip2 Packages")
 var listPip3 = flag.Bool("pip3", false, "List All Pip3 Packages")
