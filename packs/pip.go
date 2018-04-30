@@ -8,7 +8,8 @@ import (
 	sh "github.com/codeskyblue/go-sh"
 )
 
-func getPip3Packages() []Package {
+// GetPip3 all packages globally installed with Pip3.
+func GetPip3() []Package {
 	packages := make([]Package, 1)
 	out, err := sh.Command("pip3", "list", "--form", "json").SetStdin(os.Stdin).Output()
 	if err != nil {
@@ -19,7 +20,8 @@ func getPip3Packages() []Package {
 	return packages
 }
 
-func getPip2Packages() []Package {
+// GetPip2 all packages globally installed with Pip2.
+func GetPip2() []Package {
 	packages := make([]Package, 1)
 	out, err := sh.Command("pip2", "list", "--form", "json").SetStdin(os.Stdin).Output()
 	if err != nil {

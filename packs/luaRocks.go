@@ -8,7 +8,8 @@ import (
 	sh "github.com/codeskyblue/go-sh"
 )
 
-func getLuaRocks() []Package {
+// GetLuaRocks returns all globally installed rocks.
+func GetLuaRocks() []Package {
 	packs := make([]Package, 1)
 	out, err := sh.Command("luarocks", "list", "porcelain").SetStdin(os.Stdin).Output()
 	if err != nil {

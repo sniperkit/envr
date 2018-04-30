@@ -8,8 +8,10 @@ import (
 	sh "github.com/codeskyblue/go-sh"
 )
 
-func getRubyGems() []Package {
-	packs := make([]Package, 1)
+// GetRubyGems all globally installed gems.
+func GetRubyGems() []Package {
+	// packs := make([]Package, 0)
+	var packs []Package
 	out, err := sh.Command("gem", "list").SetStdin(os.Stdin).Output()
 	if err != nil {
 		fmt.Println(err)

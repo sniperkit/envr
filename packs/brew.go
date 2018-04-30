@@ -8,7 +8,8 @@ import (
 	sh "github.com/codeskyblue/go-sh"
 )
 
-func getBrewPackages() []Package {
+// GetBrew returns all software currently installed by Homebrew.
+func GetBrew() []Package {
 	packs := make([]Package, 1)
 	out, err := sh.Command("brew", "list", "--versions").SetStdin(os.Stdin).Output()
 	if err != nil {
@@ -29,7 +30,8 @@ func getBrewPackages() []Package {
 	return packs
 }
 
-func getCaskPackages() []Package {
+// GetBrewCask returns all applications currently installed by Homebrew Cask.
+func GetBrewCask() []Package {
 	packs := make([]Package, 1)
 	out, err := sh.Command("brew", "cask", "list", "--versions").SetStdin(os.Stdin).Output()
 	if err != nil {

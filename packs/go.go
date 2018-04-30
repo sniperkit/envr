@@ -9,7 +9,8 @@ import (
 	sh "github.com/codeskyblue/go-sh"
 )
 
-func getGo() []Package {
+// GetGo returns all packages installed in your GoPath.
+func GetGo() []Package {
 	packs := make([]Package, 1)
 
 	goPath := os.Getenv("GOPATH")
