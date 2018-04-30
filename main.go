@@ -9,16 +9,19 @@ import (
 	"os"
 
 	"github.com/cloudogu/spinners"
-	"github.com/dunstontc/envr/packs"
+	p "github.com/dunstontc/envr/packs"
 )
 
-var listPip2 = flag.Bool("pip2", false, "List All Pip2 Packages")
-var listPip3 = flag.Bool("pip3", false, "List All Pip3 Packages")
-var listGems = flag.Bool("gem", false, "List All Ruby Gems")
-var listBrew = flag.Bool("brew", false, "List Homebrew Installs")
-var listCask = flag.Bool("brew", false, "List Homebrew Installs")
-var listGo = flag.Bool("go", false, "List Installed Go Packages")
-var writeList = flag.Bool("write", false, "Write a list of all Packages.")
+var (
+	listPip2  = flag.Bool("pip2", false, "List All Pip2 Packages")
+	listPip3  = flag.Bool("pip3", false, "List All Pip3 Packages")
+	listGems  = flag.Bool("gem", false, "List All Ruby Gems")
+	listBrew  = flag.Bool("brew", false, "List Homebrew Installs")
+	listNPM   = flag.Bool("npm", false, "List Homebrew Installs")
+	listCask  = flag.Bool("cask", false, "List Homebrew Installs")
+	listGo    = flag.Bool("go", false, "List Installed Go Packages")
+	writeList = flag.Bool("write", false, "Write a list of all Packages.")
+)
 
 func main() {
 	spinner := spinners.NewDotsSpinner(os.Stdout)
@@ -27,65 +30,56 @@ func main() {
 	flag.Parse()
 
 	if *listPip2 {
-		for _, p := range getPip2Packages() {
-			fmt.Println(p.Name)
-		}
+		fmt.Println(p.GetPip2())
+	}
+	if *listNPM {
+		fmt.Println(p.GetNPM())
 	}
 	if *listPip3 {
-		for _, p := range getPip3Packages() {
-			fmt.Println(p.Name)
-		}
+		fmt.Println(p.GetPip3())
 	}
 	if *listGems {
-		for _, p := range getRubyGems() {
-			fmt.Println(p.Name)
-		}
+		fmt.Println(p.GetRubyGems())
 	}
 	if *listBrew {
-		for _, p := range getBrewPackages() {
-			fmt.Println(p.Name)
-		}
+		fmt.Println(p.GetBrew())
 	}
 	if *listCask {
-		for _, p := range getCaskPackages() {
-			fmt.Println(p.Name)
-		}
+		fmt.Println(p.GetBrewCask())
 	}
 	if *listGo {
-		for _, p := range getGo() {
-			fmt.Println(p.Name)
-		}
+		fmt.Println(p.GetGo())
 	}
 
 	if *writeList {
 
-		pip2Packs := NewPackages("Pip2", getPip2Packages())
-		pip3Packs := NewPackages("Pip3", getPip3Packages())
-		brewPacks := NewPackages("Homebrew", getBrewPackages())
-		caskPacks := NewPackages("Homebrew Cask", getCaskPackages())
-		gemPacks := NewPackages("RubyGems", getRubyGems())
-		goPacks := NewPackages("Go", getGo())
+		// pip2Packs := p.Packages{"Pip2", p.GetPip2()}
+		pip2Packs := p.NewPackages("Pip2", p.GetPip2())
+		pip3Packs := p.NewPackages("Pip3", p.GetPip3())
+		brewPacks := p.NewPackages("Homebrew", p.GetBrew())
+		caskPacks := p.NewPackages("Homebrew Cask", p.GetBrewCask())
+		gemPacks := p.NewPackages("RubyGems", p.GetRubyGems())
+		goPacks := p.NewPackages("Go", p.GetGo())
 
-		catalog := make([]Packages, 0)
+		catalog := make([]p.Packages, 0)
 		catalog = append(catalog, pip2Packs, pip3Packs, brewPacks, caskPacks, gemPacks, goPacks)
 
 		var home = os.Getenv("HOME")
-		jsonFile, err := os.Create(home + "/" + "inventory-2.json")
+		jsonFile, err := os.Create(home + "/" + "inventory.json")
 		if err != nil {
 			fmt.Println("Error creating JSON file:", err.Error())
 			// TODO: Handle if file already exists.
-			defer os.Exit(1)
+			os.Exit(1)
 		}
 		jsonWriter := io.Writer(jsonFile)
 		encoder := json.NewEncoder(jsonWriter)
 		err = encoder.Encode(&catalog)
 		if err != nil {
 			fmt.Println("Error encoding JSON to file:", err.Error())
-			defer os.Exit(1)
+			os.Exit(1)
 		}
 
-		spinner.Stop()
-		fmt.Println("all done :)")
 	}
+	spinner.Stop()
 
 }
