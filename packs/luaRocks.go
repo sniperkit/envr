@@ -8,6 +8,8 @@ import (
 	sh "github.com/codeskyblue/go-sh"
 )
 
+// - name version, location `[a-zA-Z0-9_-]+(?:\s+)[a-zA-Z0-9.-_]+(?:\s+installed).+`
+
 // GetLuaRocks returns all globally installed rocks.
 func GetLuaRocks() []Package {
 	packs := make([]Package, 1)
