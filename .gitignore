@@ -2,42 +2,23 @@
 #   │ ┬│ │ ││ ┬││││ │├┬┘├┤
 #  o└─┘┴ ┴ ┴└─┘┘└┘└─┘┴└─└─┘
 
-# Mac files
-Icon?
+# trash
 .DS_store
 Desktop.ini
 Thumbs.db
-
-# Files that might appear on external disks
 .Spotlight-V100
 .Trashes
 
 # dependencies
-vendor/*
-node_modules/*
-bower_components/*
+vendor
 
 # Built files
 envr
-build/*
-dist/*
 
 # Local files
 .env
 .variables
-.ignore/*
 ignore/*
-
-# Python stuff
-*/__pycache__/
-*.pyc
-VENV
-
-# Logs
-*/*.map
-npm-debug.log
-npm-debug.log.*
-yarn-error.log
 
 # Misc.
 !.gitkeep

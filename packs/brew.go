@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	sh "github.com/codeskyblue/go-sh"
-	"github.com/dunstontc/enventory/envr/cmd"
 )
 
 // GetBrew returns all software currently installed by Homebrew.

@@ -26,7 +26,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/cloudogu/spinners"
+	// "github.com/cloudogu/spinners"
 	p "github.com/dunstontc/envr/packs"
 )
 
@@ -42,6 +42,7 @@ var (
 )
 
 func main() {
+	// cmd.Execute()
 	spinner := spinners.NewDotsSpinner(os.Stdout)
 	spinner.Start("taking inventory")
 
