@@ -8,7 +8,7 @@ import (
 	sh "github.com/codeskyblue/go-sh"
 )
 
-// GetPip3 all packages globally installed with Pip3.
+// GetPip3 returns all packages globally installed with Pip3.
 func GetPip3() []Package {
 	packages := make([]Package, 1)
 	out, err := sh.Command("pip3", "list", "--form", "json").SetStdin(os.Stdin).Output()
@@ -20,7 +20,7 @@ func GetPip3() []Package {
 	return packages
 }
 
-// GetPip2 all packages globally installed with Pip2.
+// GetPip2 returns all packages globally installed with Pip2.
 func GetPip2() []Package {
 	packages := make([]Package, 1)
 	out, err := sh.Command("pip2", "list", "--form", "json").SetStdin(os.Stdin).Output()

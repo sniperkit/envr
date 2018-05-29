@@ -8,9 +8,8 @@ import (
 	sh "github.com/codeskyblue/go-sh"
 )
 
-// GetRubyGems all globally installed gems.
+// GetRubyGems returns all globally installed gems.
 func GetRubyGems() []Package {
-	// packs := make([]Package, 0)
 	var packs []Package
 	out, err := sh.Command("gem", "list").SetStdin(os.Stdin).Output()
 	if err != nil {

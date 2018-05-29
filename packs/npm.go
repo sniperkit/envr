@@ -30,7 +30,6 @@ func GetNPM() []Package {
 		pack.Name = key
 		packs = append(packs, pack)
 	}
-
 	// json.Unmarshal(out, &packs)
 
 	return packs
