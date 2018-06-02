@@ -41,3 +41,10 @@ func getDir() (string, error) {
 	}
 	return dir, nil
 }
+
+func checkBin(binary string) {
+	path, err := exec.LookPath(binary)
+	if err == nil {
+		fmt.Printf("%s is available at %s\n", binary, path)
+	}
+}
